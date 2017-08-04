@@ -23,6 +23,9 @@
     </section>
 
     <section class="main-content">
+      <h1>{{ title }}</h1>
+  
+  
       {{ content }}
 
       <footer class="site-footer">
