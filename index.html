@@ -1,9 +1,8 @@
 ---
 title: API Docs
 ---
-{% assign sorted_collections = site.collections | sort: "position" %}
-{% for collection in sorted_collections %}
-	{% assign sorted_docs = collection.docs | sort: "position" %}
+
+	{% assign sorted_docs = site.collections.api.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
 		<section class="doc-content">
 			<section class="left-docs">
@@ -27,6 +26,7 @@ title: API Docs
 					{{ doc.right_code | markdownify }}
 				</section>
 			{% endif %}
+
 		</section>
 	{% endfor %}
-{% endfor %}
+
