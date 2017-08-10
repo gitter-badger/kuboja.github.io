@@ -19,6 +19,9 @@ collections:
   api:
     title: APIs
     position: 2
+  array:
+    title: Array functions
+    position: 3
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag
