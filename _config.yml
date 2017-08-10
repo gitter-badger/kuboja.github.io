@@ -9,7 +9,7 @@
 title: Aviator
 description: Jekyll template for API documentation.
 url: https://example.com
-google_analytics_key:
+google_analytics_key:UA-104430639-1
 permalink: pretty
 
 collections:
