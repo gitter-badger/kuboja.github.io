@@ -9,7 +9,7 @@
 title: Aviator
 description: Jekyll template for API documentation.
 url: https://kuboja.github.io
-google_analytics_key:UA-104430639-1
+google_analytics_key: UA-104430639-1
 permalink: pretty
 
 collections:
