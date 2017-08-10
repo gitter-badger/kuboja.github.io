@@ -1,102 +1,11 @@
-(function () {
-	function getQueryVariable(variable) {
-		var query = window.location.search.substring(1),
-			vars = query.split("&");
-
-		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split("=");
-
-			if (pair[0] === variable) {
-				return pair[1];
-			}
-		}
-	}
-
-	function getPreview(query, content, previewLength) {
-		previewLength = previewLength || (content.length * 2);
-
-		var parts = query.split(" "),
-			match = content.toLowerCase().indexOf(query.toLowerCase()),
-			matchLength = query.length,
-			preview;
-
-		// Find a relevant location in content
-		for (var i = 0; i < parts.length; i++) {
-			if (match >= 0) {
-				break;
-			}
-
-			match = content.toLowerCase().indexOf(parts[i].toLowerCase());
-			matchLength = parts[i].length;
-		}
-
-		// Create preview
-		if (match >= 0) {
-			var start = match - (previewLength / 2),
-				end = start > 0 ? match + matchLength + (previewLength / 2) : previewLength;
-
-			preview = content.substring(start, end).trim();
-
-			if (start > 0) {
-				preview = "..." + preview;
-			}
-
-			if (end < content.length) {
-				preview = preview + "...";
-			}
-
-			// Highlight query parts
-			preview = preview.replace(new RegExp("(" + parts.join("|") + ")", "gi"), "<strong>$1</strong>");
-		} else {
-			// Use start of content if no match found
-			preview = content.substring(0, previewLength).trim() + (content.length > previewLength ? "..." : "");
-		}
-
-		return preview;
-	}
-
-	function displaySearchResults(results, query) {
-		var searchResultsEl = document.getElementById("search-results"),
-			searchProcessEl = document.getElementById("search-process");
-
-		if (results.length) {
-			var resultsHTML = "";
-			results.forEach(function (result) {
-				var item = window.data[result.ref],
-					contentPreview = getPreview(query, item.content, 170),
-					titlePreview = getPreview(query, item.title);
-
-				resultsHTML += "<li><h4><a href='" + item.url + "'>" + titlePreview + "</a></h4><p><small>" + contentPreview + "</small></p></li>";
-			});
-
-			searchResultsEl.innerHTML = resultsHTML;
-			searchProcessEl.innerText = "Showing";
-		} else {
-			searchResultsEl.style.display = "none";
-			searchProcessEl.innerText = "No";
-		}
-	}
-
-	window.index = lunr(function () {
-		this.field("id");
-		this.field("title", {boost: 10});
-		this.field("category");
-		this.field("url");
-		this.field("content");
-	});
-
-	var query = decodeURIComponent((getQueryVariable("q") || "").replace(/\+/g, "%20")),
-		searchQueryContainerEl = document.getElementById("search-query-container"),
-		searchQueryEl = document.getElementById("search-query"),
-		searchInputEl = document.getElementById("search-input");
-
-	searchInputEl.value = query;
-	searchQueryEl.innerText = query;
-	searchQueryContainerEl.style.display = "inline";
-
-	for (var key in window.data) {
-		window.index.add(window.data[key]);
-	}
-
-	displaySearchResults(window.index.search(query), query); // Hand the results off to be displayed
-})();
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="246px" height="61px" viewBox="30.5 123.5 246 61" enable-background="new 30.5 123.5 246 61" xml:space="preserve">
+<path fill="#FFFFFF" d="M61.316,154.222L50.78,143.705l-10.535,10.517c-2.903,2.904-4.354,6.774-4.354,10.498
+	c0,3.722,1.451,7.648,4.354,10.553c2.903,2.903,6.72,4.373,10.535,4.373c3.816,0,7.63-1.47,10.536-4.373
+	c2.902-2.904,4.354-6.831,4.354-10.553C65.671,160.996,64.219,157.126,61.316,154.222z M39.612,165.388
+	c0.018-3.722,1.156-6.087,3.275-8.188l7.893-8.06l7.894,8.152c2.12,2.083,3.256,4.373,3.274,8.095H39.612z"/>
+<text transform="matrix(1 0 0 1 71.5 177.5)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="70">aviator</text>
+</svg>
