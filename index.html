@@ -2,7 +2,7 @@
 title: API Docs
 ---
 
-	{% assign sorted_docs = site.collections.api.docs | sort: "position" %}
+	{% assign sorted_docs = site.api.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
 		<section class="doc-content">
 			<section class="left-docs">
